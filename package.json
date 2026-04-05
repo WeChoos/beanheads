@@ -25,8 +25,8 @@
       "pre-commit": "tsdx lint"
     }
   },
-  "name": "beanheads",
-  "author": "Robert Broersma",
+  "name": "@WeChoos/beanheads",
+  "author": "WeChoos based from Robert Broersma's beanheads",
   "module": "dist/core.esm.js",
   "devDependencies": {
     "@types/react": "^16.9.41",
