@@ -1,0 +1,47 @@
+name: Publish to GitHub Packages
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@WeChoos"
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set version from tag
+        run: |
+          TAG_VER="${GITHUB_REF_NAME#v}"
+          CUR_VER=$(node -p "require('./package.json').version")
+          if [ "$CUR_VER" != "$TAG_VER" ]; then
+            npm version "$TAG_VER" --no-git-tag-version
+          else
+            echo "package.json version already $TAG_VER; skipping npm version"
+          fi
+
+      - name: Build
+        run: npm run build
+
+      - name: Publish
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
