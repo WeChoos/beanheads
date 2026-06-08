@@ -5,3 +5,8 @@ node_modules
 .cache
 dist
 parts
+# Secrets — never commit
+.envrc
+.env
+.env.*
+!.envrc.example

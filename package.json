@@ -1,8 +1,16 @@
 {
-  "version": "0.3.3",
+  "version": "0.4.0",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "dist/beanheads.esm.js",
+  "module": "dist/beanheads.esm.js",
   "typings": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/beanheads.esm.js",
+      "require": "./dist/index.js"
+    }
+  },
   "files": [
     "dist",
     "src"
@@ -27,7 +35,6 @@
   },
   "name": "@WeChoos/beanheads",
   "author": "WeChoos based from Robert Broersma's beanheads",
-  "module": "dist/core.esm.js",
   "devDependencies": {
     "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",

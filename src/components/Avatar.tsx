@@ -44,8 +44,6 @@ import { RoundGlasses } from './accessories/RoundGlasses'
 import { SquareGlasses } from './accessories/SquareGlasses'
 import { AngryEyebrows } from './eyebrows/AngryEyebrows'
 import { StubbleBeard } from './facialHair/Stubble'
-import { RedwoodGraphic } from './clothingGraphic/Redwood'
-import { GatsbyGraphic } from './clothingGraphic/Gatsby'
 import * as Dress from './clothing/Dress'
 
 import { SquintEyes } from './eyes/SquintEyes'
@@ -53,16 +51,13 @@ import { ConcernedEyebrows } from './eyebrows/ConcernedEyebrows'
 import { Shades } from './accessories/Shades'
 import { TankTop } from './clothing/TankTop'
 import { SimpleEyes } from './eyes/SimpleEyes'
-import { Vue as VueGraphics } from './clothingGraphic/Vue'
 import { DizzyEyes } from './eyes/DizzyEyes'
 import { WinkEyes } from './eyes/Wink'
 import { HeartEyes } from './eyes/HeartEyes'
 import { OpenMouth } from './mouths/OpenMouth'
 import { SeriousMouth } from './mouths/SeriousMouth'
-import { ReactGraphic } from './clothingGraphic/React'
 import { TinyGlasses } from './accessories/TinyGlasses'
 import { VNeck } from './clothing/VNeck'
-import { GraphQLGraphic } from './clothingGraphic/GraphQL'
 import { Tongue } from './mouths/Tongue'
 import { DressShirt } from './clothing/DressShirt'
 
@@ -112,14 +107,11 @@ export const hairMap = {
 
 export const facialHairMap = {
   none: Noop,
-  none2: Noop,
-  none3: Noop,
   stubble: StubbleBeard,
   mediumBeard: MediumBeard,
 }
 
 export const clothingMap = {
-  naked: { Back: Noop, Front: Noop },
   shirt: { Back: Shirt, Front: Noop },
   dressShirt: { Back: DressShirt, Front: Noop },
   vneck: { Back: VNeck, Front: Noop },
@@ -135,28 +127,15 @@ export const accessoryMap = {
   shades: Shades,
 }
 
-export const graphicsMap = {
-  none: Noop,
-  redwood: RedwoodGraphic,
-  gatsby: GatsbyGraphic,
-  vue: VueGraphics,
-  react: ReactGraphic,
-  graphQL: GraphQLGraphic,
-}
-
 export const hatMap = {
   none: { Front: Noop, Back: Noop },
-  none2: { Front: Noop, Back: Noop },
-  none3: { Front: Noop, Back: Noop },
-  none4: { Front: Noop, Back: Noop },
-  none5: { Front: Noop, Back: Noop },
   beanie: Beanie,
   turban: Turban,
 }
 
 export const bodyMap = {
-  chest: Chest,
-  breasts: Breasts,
+  male: Chest,
+  female: Breasts,
 }
 
 function selectRandomKey<T extends {}>(object: T) {
@@ -174,7 +153,6 @@ export interface AvatarProps {
   facialHair?: keyof typeof facialHairMap
   clothing?: keyof typeof clothingMap
   accessory?: keyof typeof accessoryMap
-  graphic?: keyof typeof graphicsMap
   hat?: keyof typeof hatMap
   body?: keyof typeof bodyMap
 
@@ -185,8 +163,8 @@ export interface AvatarProps {
   hatColor?: keyof typeof colors.clothing
   faceMaskColor?: keyof typeof colors.clothing
 
+  /** SVG clip for circular avatar export; not a face covering. */
   mask?: boolean
-  faceMask?: boolean
   lashes?: boolean
 }
 
@@ -201,7 +179,6 @@ export const Avatar = React.forwardRef<SVGSVGElement, AvatarProps>(
       facialHair = selectRandomKey(facialHairMap),
       clothing = selectRandomKey(clothingMap),
       accessory = selectRandomKey(accessoryMap),
-      graphic = selectRandomKey(graphicsMap),
       hat = selectRandomKey(hatMap),
       body = selectRandomKey(bodyMap),
 
@@ -213,7 +190,6 @@ export const Avatar = React.forwardRef<SVGSVGElement, AvatarProps>(
       faceMaskColor = selectRandomKey(colors.clothing),
 
       mask = true,
-      faceMask = false,
       lashes = Math.random() > 0.5,
 
       ...rest
@@ -229,7 +205,6 @@ export const Avatar = React.forwardRef<SVGSVGElement, AvatarProps>(
     const FacialHair = facialHairMap[facialHair]
     const Clothing = clothingMap[clothing]
     const Accessory = accessoryMap[accessory]
-    const Graphic = graphicsMap[graphic]
     const Hat = hatMap[hat]
     const Body = bodyMap[body]
 
@@ -244,7 +219,7 @@ export const Avatar = React.forwardRef<SVGSVGElement, AvatarProps>(
           facialHair={FacialHair}
           clothing={Clothing}
           accessory={Accessory}
-          graphic={Graphic}
+          graphic={Noop}
           hat={Hat}
           body={Body}
           hatColor={hatColor}
@@ -253,7 +228,7 @@ export const Avatar = React.forwardRef<SVGSVGElement, AvatarProps>(
           circleColor={circleColor}
           lipColor={lipColor}
           mask={mask}
-          faceMask={faceMask}
+          faceMask={false}
           faceMaskColor={faceMaskColor}
           lashes={lashes}
           {...rest}
