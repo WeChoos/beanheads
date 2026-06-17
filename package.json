@@ -1,8 +1,9 @@
 {
-  "version": "0.4.0",
+  "version": "0.5.0",
   "license": "MIT",
   "main": "dist/beanheads.esm.js",
   "module": "dist/beanheads.esm.js",
+  "react-native": "src/index.tsx",
   "typings": "dist/index.d.ts",
   "exports": {
     ".": {
@@ -26,7 +27,13 @@
     "prepare": "tsdx build"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16",
+    "react-native-svg": ">=13"
+  },
+  "peerDependenciesMeta": {
+    "react-native-svg": {
+      "optional": true
+    }
   },
   "husky": {
     "hooks": {

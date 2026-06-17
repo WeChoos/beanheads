@@ -1,4 +1,5 @@
 import React from 'react'
+import { Circle } from '../primitives'
 import { useTheme } from '../themeContext'
 import { colors } from '../theme'
 
@@ -11,5 +12,5 @@ export const BgCircle = ({ circleColor }: BgCircleProps) => {
 
   const color = colors.bgColors[circleColor]
 
-  return <circle cx="500" cy="630.1601" r="332.441995" fill={color} />
+  return <Circle cx="500" cy="630.1601" r="332.441995" fill={color} />
 }

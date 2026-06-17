@@ -1,4 +1,5 @@
 import React from 'react'
+import { Line } from '../../primitives'
 import { useTheme } from '../../themeContext'
 
 export const DizzyEyes = () => {
@@ -6,7 +7,7 @@ export const DizzyEyes = () => {
 
   return (
     <>
-      <line
+      <Line
         x1="375.88"
         y1="603.9"
         x2="306.24"
@@ -15,9 +16,9 @@ export const DizzyEyes = () => {
         stroke={colors.outline}
         strokeLinecap="round"
         strokeMiterlimit={10}
-        strokeWidth="16px"
+        strokeWidth={16}
       />
-      <line
+      <Line
         x1="306.24"
         y1="603.9"
         x2="375.88"
@@ -26,9 +27,9 @@ export const DizzyEyes = () => {
         stroke={colors.outline}
         strokeLinecap="round"
         strokeMiterlimit={10}
-        strokeWidth="16px"
+        strokeWidth={16}
       />
-      <line
+      <Line
         x1="695.99"
         y1="603.9"
         x2="626.34"
@@ -37,9 +38,9 @@ export const DizzyEyes = () => {
         stroke={colors.outline}
         strokeLinecap="round"
         strokeMiterlimit={10}
-        strokeWidth="16px"
+        strokeWidth={16}
       />
-      <line
+      <Line
         x1="626.34"
         y1="603.9"
         x2="695.99"
@@ -48,7 +49,7 @@ export const DizzyEyes = () => {
         stroke={colors.outline}
         strokeLinecap="round"
         strokeMiterlimit={10}
-        strokeWidth="16px"
+        strokeWidth={16}
       />
     </>
   )

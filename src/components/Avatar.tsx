@@ -168,7 +168,7 @@ export interface AvatarProps {
   lashes?: boolean
 }
 
-export const Avatar = React.forwardRef<SVGSVGElement, AvatarProps>(
+export const Avatar = React.forwardRef<unknown, AvatarProps>(
   (
     {
       skinTone = selectRandomKey(colors.skin),

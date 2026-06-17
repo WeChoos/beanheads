@@ -1,11 +1,12 @@
 import React from 'react'
+import { Line } from '../../primitives'
 import { useTheme } from '../../themeContext'
 
 export const SeriousMouth = () => {
   const { colors } = useTheme()
 
   return (
-    <line
+    <Line
       x1="446.66"
       y1="606.02"
       x2="542.53"
@@ -14,7 +15,7 @@ export const SeriousMouth = () => {
       stroke={colors.outline}
       strokeLinecap="round"
       strokeMiterlimit={10}
-      strokeWidth="12px"
+      strokeWidth={12}
     />
   )
 }
