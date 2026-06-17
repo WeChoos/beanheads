@@ -1,5 +1,5 @@
 {
-  "version": "0.5.0",
+  "version": "1.1.0",
   "license": "MIT",
   "main": "dist/beanheads.esm.js",
   "module": "dist/beanheads.esm.js",
@@ -7,6 +7,7 @@
   "typings": "dist/index.d.ts",
   "exports": {
     ".": {
+      "react-native": "./src/index.tsx",
       "types": "./dist/index.d.ts",
       "import": "./dist/beanheads.esm.js",
       "require": "./dist/index.js"
